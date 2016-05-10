@@ -8,12 +8,20 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('home', {
+      .state('overview', {
+        url: '/overview',
+        templateUrl: 'app/overview/overview.html',
+        controller: 'OverviewController',
+        controllerAs: 'overview'
+      })
+
+     .state('home', {
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main'
       });
+
 
     $urlRouterProvider.otherwise('/');
   }
