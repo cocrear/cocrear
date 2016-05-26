@@ -6,7 +6,7 @@
     .controller('OverviewController', OverviewController);
 
   /** @ngInject */
-  function OverviewController($timeout, feature, metacoin) {
+  function OverviewController($timeout, feature, backend) {
     var vm = this;
     vm.amount = 200;
     vm.features = [];
@@ -25,7 +25,7 @@
     }
 
     function fillBalance() {
-      vm.balance = metacoin.getBalance();
+      vm.balance = backend.getBalance();
     }
 
   }
