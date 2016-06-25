@@ -10,22 +10,17 @@
     var vm = this;
     vm.amount = 200;
     vm.features = [];
-    vm.balance;
+    vm.greeting;
 
     activate();
 
     function activate() {
-      fillFeatures();
-      fillBalance();
+      fillGreating();
     }
 
 
-    function fillFeatures() {
-      vm.features = feature.getFeatures();
-    }
-
-    function fillBalance() {
-      vm.balance = backend.getBalance();
+    function fillGreating() {
+      vm.greeting = backend.getGreeting();
     }
 
   }

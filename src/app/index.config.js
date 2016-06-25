@@ -6,7 +6,10 @@
     .config(config);
 
   /** @ngInject */
-  function config($logProvider, toastrConfig) {
+  function config($logProvider, toastrConfig, $provide) {
+    $provide.constant('web3Provider', 'http://localhost:8545');
+    $provide.constant('backendContractAddress', '0x902b3be699512a87d1cd9b9c9f3edd1cc8f7f623');
+
     // Enable log
     $logProvider.debugEnabled(true);
 

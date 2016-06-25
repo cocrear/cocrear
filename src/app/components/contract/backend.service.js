@@ -9,6 +9,7 @@
       /** @ngInject */
   function backend($log) {
     var web3;
+    var ABI = [{"constant":false,"inputs":[],"name":"kill","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"type":"function"},{"inputs":[{"name":"_greeting","type":"string"}],"type":"constructor"}];
     var vm = this;
     vm.balance;
     vm.account;
@@ -24,9 +25,16 @@
 
     vm.account = web3.eth.accounts[0];
 
-    this.getBalance = getBalance;
+    this.createContract = createContract;
+    this.getGreeting = getGreeting;
 
-    function getBalance() {
+    function getGreeting() {
+      var greeter = web3.eth.contract(ABI).at("0x3b84bacea087d20c31f20982aba30e54f2e9cd8c");
+      return greeter.greet();
+    }
+
+
+    function createContract() {
       // https://www.ethereum.org/greeter#getting-other-people-to-interact-with-your-code
       // https://ethereum.github.io/browser-solidity/#version=soljson-latest.js&optimize=true
 
@@ -36,7 +44,7 @@
 
 
       var _greeting = "Hallo Rainer" ;
-      var greeterContract = web3.eth.contract([{"constant":false,"inputs":[],"name":"kill","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"type":"function"},{"inputs":[{"name":"_greeting","type":"string"}],"type":"constructor"}]);
+      var greeterContract = web3.eth.contract(ABI);
       var greeter = greeterContract.new(
          _greeting,
          {
